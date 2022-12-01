@@ -53,14 +53,14 @@ public class TimestampStringParser {
      * @param s целочисленная десятичная строка
      * @return целое число, соответствующее строке
      */
-    public static int[] stringToInts(String s) {
+    public static Integer[] stringToInts(String s) {
         // TODO: написать свой метод, использующий stringToInt()
         // Подсказка 1: задача аналогична поиску слов в предложений,
         // только там разделитель был пробел, а здесь - другой символ
         // Подсказка 2: добавьте к строке пустой символ, чтобы не забыть учесть последнее число
         int N = 0; // количество чисел в строке зависит от количества разделителей в строке
         // --> найти количество чисел
-        int[] numbers = new int[N];
+        Integer[] numbers = new Integer[N];
         int lastNumberIndex = 0;
         for (int i = 0; i < s.length(); i++) {
             // --> бросить исключение или узнать индексы очередного числа

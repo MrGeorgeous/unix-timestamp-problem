@@ -41,7 +41,7 @@ public class UnixTimestamp implements IUnixTimestamp {
      */
     public UnixTimestamp(String str) {
         boolean hasDateAndTime = TimestampStringParser.isFormatWithDateAndTime(str);
-        int[] numericComponents = TimestampStringParser.stringToInts(str);
+        Integer[] numericComponents = TimestampStringParser.stringToInts(str);
         if (hasDateAndTime) {
             secondsSince1970 = TimestampHelper.timestampWithDateAndTime(numericComponents);
         } else {

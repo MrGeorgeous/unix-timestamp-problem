@@ -45,7 +45,7 @@ public class TimestampHelper {
      * @return int с количеством секунд, прошедших с начала эпохи Unix
      * @throws IllegalArgumentException если массив содержит некорректные данные или время выходит за рамки Unix
      */
-    public static int timestampWithDate(int[] d) {
+    public static int timestampWithDate(Integer[] d) {
         // TODO: реализовать метод
         // Подсказка: просуммируйте секунды, за прошедшее количество полных лет
         // затем за количество полных месяцев (учитывайте високосность с помощью daysInMonths(int year))
@@ -61,7 +61,7 @@ public class TimestampHelper {
      * @return int с количеством секунд, прошедших с начала эпохи Unix
      * @throws IllegalArgumentException если массив содержит некорректные данные или время выходит за рамки Unix
      */
-    public static int timestampWithDateAndTime(int[] d) {
+    public static int timestampWithDateAndTime(Integer[] d) {
         // TODO: реализовать метод, используя timestampWithDate()
         // Подсказка: просуммируйте секунды, за прошедшее количество полных лет
         // затем за количество полных месяцев (учитывайте високосность с помощью daysInMonths(int year))
