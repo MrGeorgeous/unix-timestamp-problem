@@ -11,7 +11,7 @@ public interface IAdvancedTimestamp extends IUnixTimestamp {
         Sunday
     }
 
-    Weekday getWeekday(int n);
+    Weekday getWeekday();
     int getDay();
     int getMonth();
     int getYear();

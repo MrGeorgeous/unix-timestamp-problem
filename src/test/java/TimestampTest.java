@@ -45,6 +45,7 @@ public class TimestampTest {
                 assertEquals(UnixTimestamp.create(f2).getSecondsFrom1970(), r2.getSecondsFrom1970());
 
                 checkDays(UnixTimestamp.create((int) finalI), r);
+                checkHours(UnixTimestamp.create((int) finalI), r);
 
             } catch (IllegalArgumentException e) {
                 assertThrows(IllegalArgumentException.class, () -> {
@@ -55,6 +56,19 @@ public class TimestampTest {
             }
 
         }
+
+        assertThrows(IllegalArgumentException.class, () -> UnixTimestamp.create("01.01.189"));
+        assertThrows(IllegalArgumentException.class, () -> UnixTimestamp.create("01.01.2000 12:2:333"));
+        assertThrows(IllegalArgumentException.class, () -> UnixTimestamp.create(" 01X01X1990 12:2O333"));
+        assertThrows(IllegalArgumentException.class, () -> UnixTimestamp.create("01X01X1990 12:2O333"));
+        assertThrows(IllegalArgumentException.class, () -> UnixTimestamp.create("01X01X1990 12:2O!33"));
+
+        assertThrows(IllegalArgumentException.class, () -> UnixTimestamp.create("01X13.1990 12:2O:33"));
+        assertThrows(IllegalArgumentException.class, () -> UnixTimestamp.create("00X00X1990 12:2O:33"));
+        assertThrows(IllegalArgumentException.class, () -> UnixTimestamp.create("01X0X2068 12:2O:33"));
+        assertThrows(IllegalArgumentException.class, () -> UnixTimestamp.create("01X0X1968 12:2O:33"));
+        assertThrows(IllegalArgumentException.class, () -> UnixTimestamp.create("01 48 1999 12 11"));
+        assertThrows(IllegalArgumentException.class, () -> UnixTimestamp.create("01481999"));
 
     }
 
@@ -111,7 +125,8 @@ public class TimestampTest {
                 });
 
                 var a = AdvancedTimestamp.create((int) finalI);
-                assertEquals(a.getSecondsFrom1970(), r.getSecondsFrom1970());
+                assertEquals(r.getSecondsFrom1970(), a.getSecondsFrom1970());
+                assertEquals(r.getWeekday(), a.getWeekday());
                 assertEquals(r.getYear(), a.getYear());
                 assertEquals(r.getMonth(), a.getMonth());
                 assertEquals(r.getDay(), a.getDay());

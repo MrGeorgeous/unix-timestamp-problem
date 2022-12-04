@@ -55,7 +55,7 @@ public class AdvancedTimestamp extends UnixTimestamp implements IAdvancedTimesta
         super(str);
     }
 
-    public Weekday getWeekday(int n) { return Weekday.values()[n];}
+    public Weekday getWeekday() { return Weekday.values()[extractor.weekday];}
     public int getDay() { return 1 + extractor.day; }
     public int getMonth() {
         return 1 + extractor.month;

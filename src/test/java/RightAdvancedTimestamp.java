@@ -15,8 +15,8 @@ public class RightAdvancedTimestamp extends RightUnixTimestamp implements IAdvan
     }
 
     @Override
-    public Weekday getWeekday(int n) {
-        return Weekday.values()[get().getDayOfWeek().getValue()];
+    public Weekday getWeekday() {
+        return Weekday.values()[get().getDayOfWeek().getValue() - 1];
     }
 
     @Override
