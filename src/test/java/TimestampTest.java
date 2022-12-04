@@ -3,6 +3,7 @@ import impl.UnixTimestamp;
 import interfaces.IUnixTimestamp;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import util.TimestampHelper;
 import util.TimestampStringParser;
 
 import java.time.format.DateTimeFormatter;
@@ -21,6 +22,18 @@ public class TimestampTest {
         assertArrayEquals(new Integer[]{}, TimestampStringParser.stringToInts(""));
         assertArrayEquals(new Integer[]{}, TimestampStringParser.stringToInts(" "));
         assertArrayEquals(new Integer[]{123, 4}, TimestampStringParser.stringToInts(" 123 4"));
+
+        assertThrows(IllegalArgumentException.class, () -> TimestampHelper.timestampWithDate(new Integer[]{1, 12, 1959}));
+        assertThrows(IllegalArgumentException.class, () -> TimestampHelper.timestampWithDate(new Integer[]{29, 2, 1962}));
+        assertThrows(IllegalArgumentException.class, () -> TimestampHelper.timestampWithDate(new Integer[]{-5, 5, 1962}));
+        assertThrows(IllegalArgumentException.class, () -> TimestampHelper.timestampWithDate(new Integer[]{5, 5, 2062}));
+        assertThrows(IllegalArgumentException.class, () -> TimestampHelper.timestampWithDate(new Integer[]{5, 13, 1962}));
+        assertThrows(IllegalArgumentException.class, () -> TimestampHelper.timestampWithDate(new Integer[]{5, -1, 1962}));
+
+        assertThrows(IllegalArgumentException.class, () -> TimestampStringParser.isFormatWithDateAndTime("01x12x1963"));
+        assertThrows(IllegalArgumentException.class, () -> TimestampStringParser.isFormatWithDateAndTime(" 01x12x1963"));
+        assertThrows(IllegalArgumentException.class, () -> TimestampStringParser.isFormatWithDateAndTime("01x12x1963 8:12:22"));
+        assertThrows(IllegalArgumentException.class, () -> TimestampStringParser.isFormatWithDateAndTime("01.12.1963 8:12:22"));
     }
 
 
