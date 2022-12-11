@@ -23,7 +23,7 @@ public class AdvancedTimestamp extends UnixTimestamp implements IAdvancedTimesta
         final static int SECONDS_IN_DAY = 24 * SECONDS_IN_HOUR;
 
         int SECONDS_IN_MONTH(int month, int year) {
-            return TimestampHelper.daysInMonths(year)[month];
+            return SECONDS_IN_DAY * TimestampHelper.daysInMonths(year)[month];
         }
 
         int SECONDS_IN_YEAR(int year) {
